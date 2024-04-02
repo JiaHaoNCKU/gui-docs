@@ -605,7 +605,7 @@ document.write(`
 <td><p>Total number of bytes sent in each packet. Calculated as <code class="code docutils literal notranslate"><span class="pre">num_bytes</span> <span class="pre">=</span> <span class="pre">num_channels</span> <span class="pre">*</span> <span class="pre">num_samples</span> <span class="pre">*</span> <span class="pre">element_size</span></code>. This does <strong>not</strong> include the header bytes.</p></td>
 </tr>
 <tr class="row-even"><td><p>Bit Depth</p></td>
-<td><p>int16</p></td>
+<td><p><cite>int16</cite></p></td>
 <td><p>Depth defines the OpenCV.Mat <a class="reference external" href="https://github.com/horizongir/opencv.net/blob/main/src/OpenCV.Net/CoreTypes.cs#L93">Depth</a>, an enumeration defined as <code class="code docutils literal notranslate"><span class="pre">[U8,</span> <span class="pre">S8,</span> <span class="pre">U16,</span> <span class="pre">S16,</span> <span class="pre">S32,</span> <span class="pre">F32,</span> <span class="pre">F64]</span></code>, where U is ‘unsigned’, S is ‘signed’, F is ‘float’, and the number indicates the number of bits. For example, <code class="code docutils literal notranslate"><span class="pre">U16</span></code> means ‘unsigned integer with 16 bits’. Note that the enumeration is zero-indexed, where <code class="code docutils literal notranslate"><span class="pre">U8</span> <span class="pre">=</span> <span class="pre">0</span></code>, and <code class="code docutils literal notranslate"><span class="pre">F64</span> <span class="pre">=</span> <span class="pre">6</span></code></p></td>
 </tr>
 <tr class="row-odd"><td><p>Element Size</p></td>
@@ -626,6 +626,22 @@ document.write(`
 <p class="admonition-title">Note</p>
 <p>Pay attention to the order of data samples in the example script. Samples are not interleaved, but rather in each packet the samples for channel 1 are sent, followed by the samples for channel 2, and so on.</p>
 </div>
+</section>
+<section id="remote-control">
+<h2>Remote Control<a class="headerlink" href="#remote-control" title="Permalink to this heading">#</a></h2>
+<p>Some Ephys Socket settings can be modified via the GUI’s built-in HTTP server. Commands are sent as “config messages” to the Ephys Socket node.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Parameters cannot be modified while acquisition is running, nor can they be modified if the port is connected. To change any settings remotely, the port must be disconnected in the GUI</p>
+</div>
+<p>The following commands are available:</p>
+<ol class="arabic simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">ES</span> <span class="pre">INFO</span></code> : returns a JSON string containing information about all available variables (i.e., scale, offset, port, and frequency)</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">ES</span> <span class="pre">SCALE</span> <span class="pre">&lt;data_scale&gt;</span></code> : set the data scale</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">ES</span> <span class="pre">OFFSET</span> <span class="pre">&lt;data_offset&gt;</span></code> : set the data offset</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">ES</span> <span class="pre">PORT</span> <span class="pre">&lt;port&gt;</span></code> : set the port number</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">ES</span> <span class="pre">FREQUENCY</span> <span class="pre">&lt;sample_rate&gt;</span></code> : set the sampling frequency</p></li>
+</ol>
 </section>
 </section>
 
@@ -683,6 +699,7 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#header-format-for-custom-data-streams">Header Format for Custom Data Streams</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#remote-control">Remote Control</a></li>
 </ul>
   </nav></div>
 
