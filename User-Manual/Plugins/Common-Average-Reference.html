@@ -515,6 +515,19 @@ document.write(`
 </tr>
 </tbody>
 </table>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If you’re using Neuropixels probes, the <a class="reference internal" href="Neuropixels-CAR.html#neuropixelscar"><span class="std std-ref">Neuropixels CAR</span></a> plugin will be more effective at removing noise.</p>
+</div>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
+<p>Common average referencing is a widely used technique for removing noise from extracellular recordings. Since artifacts often originate from sources that are distant from the electrodes, they induce similar voltage fluctuations across all channels. Thus, computing the average value of some or all channels, and then subtracting this from the incoming data, can help isolate the signals that are generated locally.</p>
+<p>This plugin can be used for common average referencing across any number of channels, or it can perform simple digital referencing by selecting a single channel as the reference. If different subsets of electrodes are differentially affected by noise sources, multiple common average reference plugins can be used.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It’s recommended to place this plugin <em>after</em> the first Record Node in your signal chain, so the data is saved without referencing applied. Global referencing can be easily performed offline, for example by using a common median reference that is less sensitive to outliers (but is more computationally intensive than averaging).</p>
+</div>
+</section>
 <section id="plugin-configuration">
 <h2>Plugin configuration<a class="headerlink" href="#plugin-configuration" title="Permalink to this heading">#</a></h2>
 <p>There are three settings that affect the behavior of the Common Average Reference:</p>
@@ -529,7 +542,7 @@ document.write(`
 <section id="working-with-multiple-data-streams">
 <h2>Working with multiple data streams<a class="headerlink" href="#working-with-multiple-data-streams" title="Permalink to this heading">#</a></h2>
 <p>The “Reference” and “Affected” channels are only applied within a single stream. Because different streams may be sampled asynchronously, it’s not possible to reference channels from one stream to channels in another.</p>
-<p>To change the settings for a particular stream, make sure it is active in the stream selector (accsesed by clicking the vertical lines on the right-hand side of the plugin editor).</p>
+<p>To change the settings for a particular stream, make sure it is active in the stream selector (accessed by clicking the vertical lines on the right-hand side of the plugin editor).</p>
 </section>
 </section>
 
@@ -580,6 +593,7 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plugin-configuration">Plugin configuration</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#working-with-multiple-data-streams">Working with multiple data streams</a></li>
 </ul>
