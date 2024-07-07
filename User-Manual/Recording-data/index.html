@@ -576,9 +576,15 @@ document.write(`
 <img alt="View of the synchronizer interface" src="../../_images/recordnode-05.png" />
 <p>Once the synchronizer has been configured, starting data acquisition will automatically start the synchronizer. Each sync channel monitor will change from gray to orange to indicate the synchronizer is running. Once a stream has been synchronized to the main clock, the corresponding sync channel monitor will turn green.</p>
 <img alt="View of the record node when synchronized" src="../../_images/recordnode-06.png" />
+</section>
+</section>
+<section id="aligning-continuous-and-event-data">
+<h2>Aligning continuous and event data<a class="headerlink" href="#aligning-continuous-and-event-data" title="Permalink to this heading">#</a></h2>
+<p>Within a given data stream, events and/or spikes can be aligned to samples in the continuous data by finding the index at which the sample numbers match. For example, if the continuous data sample numbers range from 100 to 1000, a TTL event that occurred at sample number 500, would be aligned with the 400th sample in the continuous data. The same principle applies to spikes. The matching index can also be found by subtracting the first continuous data sample number from the event’s sample number. Using the stream start sample numbers found in <code class="code docutils literal notranslate"><span class="pre">sync_messages.txt</span></code> is no longer recommended for this, as it is less accurate.</p>
+<p>In order to align events and continuous data from different streams, these streams must be synchronized first. If data streams have been synchronized online, the timestamps can be used without modification, as these represent global times in seconds. Since different streams are likely sampled at slightly different times, a method such as <code class="code docutils literal notranslate"><span class="pre">numpy.searchsorted</span></code> should be used to find the continuous data timestamp that most closely matches that of the event.</p>
+<p>If the streams were not synchronized online, they can be synchronized offline assuming all streams share at least one event line in common. See the <a class="reference internal" href="../../Tutorials/Data-Synchronization.html#datasynchronization"><span class="std std-ref">Synchronizing Data Streams</span></a> tutorial for more information about synchronizing data streams.</p>
 <div class="toctree-wrapper compound">
 </div>
-</section>
 </section>
 </section>
 
@@ -640,6 +646,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#synchronizer">Synchronizer</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aligning-continuous-and-event-data">Aligning continuous and event data</a></li>
 </ul>
   </nav></div>
 
