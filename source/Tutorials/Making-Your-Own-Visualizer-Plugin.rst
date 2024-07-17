@@ -117,7 +117,7 @@ Note that we'll keep the processor type for the Rate Viewer plugin as a :code:`S
 
 Next, rename the :code:`VisualizerPlugin.cpp` & :code:`VisualizerPlugin.h` files to :code:`RateViewer.cpp` and :code:`RateViewer.h`, and find and replace all instances of the **VisualizerPlugin** class name to **RateViewer** in the .cpp and .h files. Do the same with :code:`VisualizerPluginEditor.cpp`, :code:`VisualizerPluginEditor.h`, :code:`VisualizerPluginCanvas.cpp`, and :code:`VisualizerPluginCanvas.h`. 
 
-Next, change the "display name" of the plugin on line 30 of :code:`RateViewer.h` from :code:`Visualizer` to :code:`Rate Viewer`.
+Next, change the "display name" of the plugin on line 30 of :code:`RateViewer.cpp` from :code:`Visualizer` to :code:`Rate Viewer`.
 
 Finally, update the include inside :code:`OpenEphysLib.cpp` from :code:`#include "VisualizerPlugin.h"` to :code:`#include "RateViewer.h"`.
 
